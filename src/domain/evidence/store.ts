@@ -49,10 +49,31 @@ export async function sha256(input: string): Promise<Hash> {
 }
 
 /**
+ * Serializa un valor de forma determinista (claves ordenadas recursivamente).
+ * Garantiza que el mismo contenido produzca siempre el mismo string.
+ */
+function deterministicSerialize(value: unknown): string {
+  if (value === null || value === undefined) {
+    return String(value);
+  }
+  if (typeof value !== 'object') {
+    return JSON.stringify(value);
+  }
+  if (Array.isArray(value)) {
+    return '[' + value.map(deterministicSerialize).join(',') + ']';
+  }
+  const obj = value as Record<string, unknown>;
+  const sortedKeys = Object.keys(obj).sort();
+  return '{' + sortedKeys.map(k => JSON.stringify(k) + ':' + deterministicSerialize(obj[k])).join(',') + '}';
+}
+
+/**
  * Calcula el integrityHash de un contenido.
+ * Usa serialización determinista para garantizar que el mismo contenido
+ * produzca siempre el mismo hash.
  */
 export async function computeIntegrityHash(content: unknown): Promise<Hash> {
-  const serialized = JSON.stringify(content, Object.keys(content as object).sort());
+  const serialized = deterministicSerialize(content);
   return sha256(serialized);
 }
 
