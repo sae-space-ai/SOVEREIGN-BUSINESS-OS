@@ -1,0 +1,5 @@
+ADMIN_API_KEY=replace-with-long-random-private-key
+PAYPAL_CLIENT_ID=replace-with-sandbox-app-client-id
+PAYPAL_CLIENT_SECRET=replace-with-sandbox-app-client-secret
+# Optional after webhook registration:
+# PAYPAL_WEBHOOK_ID=replace-with-sandbox-webhook-id

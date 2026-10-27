@@ -1,0 +1,16 @@
+{
+  "name": "pyme-os-paypal-ai-hackathon",
+  "main": "src/worker.mjs",
+  "compatibility_date": "2026-10-27",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "pyme-os-paypal-hackathon-db",
+      "database_id": "0d3d9fbe-6c58-4130-9a21-86bbdb7445d2",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "ai": {
+    "binding": "AI"
+  }
+}

@@ -1,5 +1,8 @@
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
 node_modules/
-.next/
-dist/
-build/
-*.log
+.wrangler/
+.env
+.env.*
+.DS_Store
